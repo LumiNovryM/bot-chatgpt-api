@@ -1,0 +1,33 @@
+import telebot
+from pyChatGPT import ChatGPT
+from pprint import pprint
+
+
+# Setup API
+api = '5946756078:AAHHnV5kicf2YPdlCs1cA7vC4Myx_5CiRSs'
+Otis = telebot.TeleBot(api)
+
+# Start Command Handler
+@Otis.message_handler(commands=['start'])
+def start(message):
+    Otis.reply_to(message, "Hai, Saya Otis\nAI yang diciptakan oleh @lumi_novry\nUntuk memulai tanyakan saya apa saja\n/help : Untuk Guide")
+
+@Otis.message_handler(commands=['help'])
+def help(message):
+    Otis.reply_to(message, "Untuk Memulai gunakan format /ask [Pertanyaan]\nUntuk kata yang berjarak sambungkan dengan tanda -\nContoh : /ask Apa-Road-Map-Front-End Web-Dev?")
+
+@Otis.message_handler(commands=['ask'])
+def ask(message):
+    texts = message.text.split(' ')
+    quest = texts[1]
+    quest = quest.replace('-', ' ')
+    print(quest)
+    session_token = 'eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..quequqNjyV1jOmG9.8cEI794MgVhbs0wnB_fLSdfPgwQS3Pcph4kcR3VEGALpOyHQVQx9kGkcSrG68lMzMtqIPkakhi79tT12A_SYKvP6YTRTCepT4DRBvu-M3Ncyzij11jlBorhuGmFcOkx_L2EmmH8rqKt0z_izwGE8bT-a4nprQDeCEB2qhgb7rQlJhMqJY1RY678lH6BVQDCwXe9DosIpiP23HZ1yzObnjKJ7PJYVdIE0v6xqW4sKLCaLUdux1OCMCCUM5BJIDrEfts-ILCszjEGooiSfuf5Zcwsxdw8rpIRaO7ltT_KARo19XqMF4ZcM-CeVjYnTawMMt1ADsvS9Usaz4fH6tukIwcVzkDJHKXJqKnZOxDsQP3BDRQYcb4hnPXGhuTJKbqOCd-yZ_BM-qpGtdeXcjNxx7VNZZF6AsGACKVVbvMiJIpOS3GTg7TrAw_ZWpoJyA3gOlJswaericwtmGl7bm1cl7M-ByI9_1rJ4DzGJguN4eKzf5Y-W5Cee1eT-E1WdHHgDV_1kB4QZf-VvAJ-dnA2Lxa_en3EHuoeBoYH5QrTqEwZRXZYYx8ADgHtSCoBFq584qkYLjWqCutBHqPtFS9GGmdf8RpK0p4SSAs7JVU7kxXumZETnf_3T5U9wKuPEU0QhOvObO902dNdH0P2PLkBorp05Ux1Fjgt-noE_fEHNPFh72NvGnQv7nbFAZsMqNTyt6WmSU75bnKiyj2Qp_diHV8D8Cgp_9Onwm6ca5yaIcdjMrJ3Zb-t8o4gTSLhOQSWzcibrbIx6vD-sPMhUjoWJdK3DbfK7ryaRPxHnGgnAJY-gYuIpSJi0udA0V9RhTSBtNegmziupo88EmFFXLHLj7TNfgOSnEN4_9ww7z2fy14yZKvIawzIcTNlvvhmDr968YASuemNml1X87uNCp3hMxkRCY2RhutUd0AdQ6ofvcdDhUESvHM8kXV-EbsrzCBLF2Y72kKPesmNv5DvEACw0ktzLkNO41tbyIJ9pBfFI23VgMA4fpYIJmVlu3w2MuvT-AqLKTHPOiEc3YJzSN3q8edmtXoww_rn0lo9niA77YrsRhfNBNXz-l7AV3SoUsPKzOhaRZBOCD28ElIjIuUmxvfn8tnemy-syrVy7fcgPkfE_G_nssa9Q4nuEJ14ZbUyRfcc2MClwW1HL-ExPRuBIk3I1s976WYwPI5DIyghUnMgiKw6oV6WU8YlKSnv6-_DPv1zb99Biu-qkIOMd30qonVkIRZFEmj9sa7xLGnDcONTH73McYE9wKwYtdp23p7D1i3wHlnlzjdRZE5quLho9I7mYyhWrXBwAsCoYBO5BVnnzrGCP3sth1Kvb-rThe4hwjxv8cM6Xn9-81HkAa8vev1YRDwRGL9AAsWKTf-4sPswNp3IUNhY1gvP5gqkK1w3f9yNuSGcifLVyir9yQj03Ot3XO8Lau7rpw140m7qP_hG4KZz9THYmwE_MahjEl6u1pJdxarxLcK9-PeiddTAPA2JfMEry_hneiBtAl8JKWqkYCirbVer-X-SoUScol7It4_Vfm6hhv_2gFt8zRp45Q_jPeou3qQXlP8uznjW0sqjQP_5Rc7asp0YSDKxn_xNv4Wt1tw6jQN-hMwRF3NGTjEEBx8z8dtxsSHvuE_obDsMNISB66hkxjZ5lkftolcP9JPofOPUivsL_9-_vBx0STeyjOsVC382zkJ-QlwNGrmUFkjDwY7WhDMaRUO2NfrvxAZOlZwOU38wDOnlcZ2ZJvtnInGuLapb9qGPjZI0eoVL4culJsfs-IIDhmPImhd5I5K3AJ6LBMMKZSdNtXrp3fPp7zo95-Wo3i2nKxlWKtFu5s4CIyRYx3Yf-nMTnQBVCkc0z6NW3lCcAGFIg9d6u3vLMzyUYq7eLs6SPkBAk7FK1pSk5yW3xGL7kBhsptB2SYKT3EP7lKj93DEQ0SPmow87f7rlgOzZpxJcAVikTmV66oLSqHblcdnwaghOiLp-rZRRMfXQ8XKUN2Sn6KrDHV6J-Hyw2kEhLsCA6rrgJhg9XRU0KwF4QQodVoaKqIex5LuEtNJ40q7MMIRokaEugHWUz9zxktfKmA5xmM937iqoQmqT2zkQEmhTD7c667LE9_1_A0pT76zHcmN6NfeTEv7m-ykT0YSF3hdacx2pfx8D1dSvL3ETWMF0u2_G2c4gVd589jd_0ddzmI5vGZnUUtX0v9Ufq3IfwFlmWxRJLxJvot5DNwmTVVooavew5cFl7CDpvI9IBDkC_k0lfAejlfICdXwZ1Vd4CsxcS7E6JxuS2d7FV.n9ahJBufdSTDMiY5FDjaLA'
+
+    api = ChatGPT(session_token)
+    response = api.send_message(quest)
+    pprint(response)
+
+
+
+Otis.polling(none_stop=True)
